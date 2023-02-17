@@ -1,0 +1,41 @@
+{
+    "welcomeFile": "/index.html",
+    "authenticationMethod": "none",
+    "routes": [
+        {
+            "source": "^/api/",
+            "target": "/",
+            "destination": "ciw-catalog-api-destination",
+            "authenticationType": "xsuaa"
+        },
+        {
+            "source": "^/api/catalog/(.*)",
+            "target": "/catalog/$1",
+            "destination": "ciw-catalog-api-destination",
+            "authenticationType": "xsuaa"
+        },
+        {
+            "source": "^/api/v2/catalog/(.*)",
+            "target": "/v2/catalog/$1",
+            "destination": "ciw-catalog-api-destination",
+            "authenticationType": "xsuaa"
+        },
+        {
+            "source": "^/flp",
+            "target": "/flpSandbox.html",
+            "localDir": "../ui/uimodule/webapp/test/",
+            "authenticationType": "none"
+        },
+        {
+            "source": "^/flp/(.*)",
+            "target": "$1",
+            "localDir": "../ui/uimodule/webapp/test/",
+            "authenticationType": "none"
+        },
+        {
+            "source": "^(.*)",
+            "localDir": "../ui/uimodule/webapp/",
+            "authenticationType": "none"
+        }
+    ]
+}

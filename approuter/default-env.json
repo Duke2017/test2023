@@ -1,0 +1,9 @@
+{
+    "destinations":[
+        {
+            "name":"ciw-catalog-api-destination",
+            "url":"http://localhost:4004/"
+        }
+    ],
+    "PORT": 5001
+}

@@ -1,0 +1,25 @@
+<mvc:View controllerName="com.sap.ciw.ui.controller.MainView" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <Table id="idProductsTable" inset="false" items="{
+			path: '/Topics',
+			sorter: {
+				path: 'name'
+			}
+		}">
+                <columns>
+                    <Column>
+                        <Text text="Topic Name" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem vAlign="Middle">
+                        <cells>
+                            <Text text="{name}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

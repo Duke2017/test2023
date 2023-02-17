@@ -1,0 +1,5 @@
+ID;name;aquicition;status;
+1d3f3537-98d8-4bb9-ab90-7dcc10334384;topc 1;true;accepted;
+1d3f3537-98d8-4bb9-ab90-7dcc10334385;topic 2;true;draft;
+1d3f3537-98d8-4bb9-ab90-7dcc10334386;topc 3;false;finished;
+1d3f3537-98d8-4bb9-ab90-7dcc10334387;topic 4;false;discontinued;

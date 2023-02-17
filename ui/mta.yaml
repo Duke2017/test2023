@@ -1,0 +1,95 @@
+ID: ui
+_schema-version: 3.2.0
+version: 0.0.1
+parameters:
+  enable-parallel-deployments: true
+modules:
+  - name: ui
+    type: nodejs
+    path: approuter
+    parameters:
+      disk-quota: 512M
+      memory: 512M
+    requires:
+      - name: ui_destination
+      - name: ui_html5_repo_runtime
+      - name: ui_uaa
+  - name: webapp_deployer
+    type: com.sap.application.content
+    path: deployer
+    requires:
+      - name: ui_html5_repo_host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - name: uimodule
+          artifacts:
+            - dist/uimodule.zip
+          target-path: resources/
+  - name: uimodule
+    type: html5
+    path: uimodule
+    build-parameters:
+      builder: custom
+      commands:
+        - npm run build:uimodule --prefix ..
+      supported-platforms: []
+  - name: ui_destination_content
+    type: com.sap.application.content
+    build-parameters:
+      no-source: true
+    requires:
+      - name: ui_uaa
+        parameters:
+          service-key:
+            name: ui_uaa_key
+      - name: ui_html5_repo_host
+        parameters:
+          service-key:
+            name: ui_html5_repo_host_key
+      - name: ui_destination
+        parameters:
+          content-target: true
+    parameters:
+      content:
+        instance:
+          existing_destinations_policy: update
+          destinations:
+            - Name: ui_destination_html5
+              ServiceInstanceName: ui_html5_repo_host
+              ServiceKeyName: ui_html5_repo_host_key
+              sap.cloud.service: ui.service
+            - Name: ui_destination_uaa
+              Authentication: OAuth2UserTokenExchange
+              ServiceInstanceName: ui_uaa
+              ServiceKeyName: ui_uaa_key
+              sap.cloud.service: ui.service
+resources:
+  - name: ui_destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service-plan: lite
+      service: destination
+      config:
+        HTML5Runtime_enabled: true
+        version: 1.0.0
+  - name: ui_html5_repo_host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service-plan: app-host
+      service: html5-apps-repo
+      config:
+        sizeLimit: 2
+  - name: ui_html5_repo_runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service-plan: app-runtime
+      service: html5-apps-repo
+  - name: ui_uaa
+    type: org.cloudfoundry.managed-service
+    parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
