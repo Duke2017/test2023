@@ -9,9 +9,9 @@ sap.ui.define(
         return Controller.extend("com.sap.ciw.ui.controller.MainView", {
             onInit: function () {},
 
-            onPublish: function(oEvent)
-            {
-
+            onListItemPress: function (oE) {
+                const id = oE.getSource().getBindingContext().getProperty("ID");
+                this.getRouter().navTo("DetailPage", {id});
             }
         });
     }

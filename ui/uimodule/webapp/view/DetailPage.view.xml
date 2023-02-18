@@ -1,0 +1,47 @@
+<mvc:View controllerName="com.sap.ciw.ui.controller.DetailPage" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m">
+    <Page showHeader="false" >
+        <content>
+            <Table id="detailPageId" items="{
+                    path: '/Customers'
+                }">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="{i18n>customerTable}" level="H2"/>
+                        <ToolbarSpacer></ToolbarSpacer>
+                        <Button	icon="sap-icon://download" press="onDataExport" />
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="name" />
+                    </Column>
+                    <Column>
+                        <Text text="customerId" />
+                    </Column>
+                    <Column>
+                        <Text text="erpId" />
+                    </Column>
+                    <Column>
+                        <Text text="fbaStatus" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem vAlign="Middle">
+                        <cells>
+                            <Text text="{name}" />
+                        </cells>
+                        <cells>
+                            <Text text="{customerId}" />
+                        </cells>
+                        <cells>
+                            <Text text="{erpId}" />
+                        </cells>
+                        <cells>
+                            <Text text="{fbaStatus}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

@@ -41,7 +41,7 @@
     }
   },
   "sap.ui5": {
-    "flexEnabled": true,
+    "flexEnabled": false,
     "dependencies": {
       "minUI5Version": "1.102.0",
       "libs": {
@@ -96,6 +96,11 @@
           "target": [
             "TargetMainView"
           ]
+        },
+        {
+          "name": "DetailPage",
+          "pattern": "DetailPage/{id}",
+          "target": "TargetDetailPage"
         }
       ],
       "targets": {
@@ -105,7 +110,10 @@
           "clearControlAggregation": false,
           "viewId": "MainView",
           "viewName": "MainView"
-        }
+        },
+        "TargetDetailPage": {
+					"viewName": "DetailPage"
+				}	
       }
     },
     "rootView": {

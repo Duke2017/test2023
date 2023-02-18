@@ -9,6 +9,7 @@ service CatalogService {
     entity Customers as projection on my.Customers;
     entity ManualAddedErpIDs as projection on my.ManualAddedErpIDs;
     entity topicPublished as projection on my.Published;
+    entity Fba as projection on my.Fba;
     type downloadReturn {
         customerName: String;
         FbaStatus:String;
